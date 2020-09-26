@@ -59,7 +59,7 @@
 
 Bla-Bla-Bla
 
-![Image of PS](/images/docker_ps_images.png)
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Arch_ps/images/docker_ps_images.png)
 
 
 
