@@ -55,7 +55,7 @@
 максимальное количество рабочих циклов за меньшее время, чем при других типах GC. Думаю,что при большем количестве ядер показатели
 для типов GC, которые используют конкурентность (Parallel,CMS,G1) стали бы лучше.  
 
-![Image of PS](https://github.com/nesteg/otus_db/tree/master/Arch_ps/images/docker_ps_pull.png)
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Arch_ps/images/docker_ps_pull.png)
 
 Bla-Bla-Bla
 
