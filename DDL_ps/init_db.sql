@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS customers.customs(
 
 CREATE TABLE IF NOT EXISTS customers.customs_addresses (
 	custom_id integer REFERENCES customers.customs,
-	adddress_id  integer REFERENCES customers.addresses
+	address_id  integer REFERENCES customers.addresses
 );
 
 
