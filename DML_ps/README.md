@@ -1,12 +1,15 @@
 # Домашнее задание
 
 
-
+1.Запрос возвращает имена и фамилии,используя оператор where с регулярным выражением в стиле POSIX.
+Будут выбираться фамилии, которые начинаются с заглавной A и окончиваются строчными en. Между A и en 
+могут находиться 0 или более любых символов.
+```
+select  first_name,last_name from customers.customs
+where last_name ~ '^A.*en$'
 ```
 
-```
-
-Запрос с оператором where и join , который возвращает список всех проданных товаров в 2019 году:
+2.Запрос с оператором where и join , который возвращает список всех проданных товаров в 2019 году:
 
 ```
 select  p.name ,b.unit,b.amount,c.short_name as currency from selling.products as p
@@ -42,14 +45,7 @@ where twn.town like 'London'
 and '2019-01-01 0:0:0' = (select date_trunc('year',b.date_buy))
 ```
 
-Добавление строки в таблицу c возратом id вставленной строки:
-
-```
-insert into customers.countrys(symbols,full_name) values('RU','Russia')
-returning country_id
-```
-
-  Пример запроса с left join, который возвращает список  всех товаров, и проданных хотя бы один раз, и не проданных.
+ Пример запроса с left join, который возвращает список  всех товаров, и проданных хотя бы один раз, и не проданных.
 Ели товар не продан,то поле byu будет равно 0.
 Поскольку слева оператора left join стоит таблица products, то из нее будут выбраны все записи,
 а отсутствующие в таблице продаж buys будут выбраны как null: 
@@ -62,15 +58,28 @@ join selling.categorys as c
 on p.category_id=c.category_id
 ```
 
-Удаляем все продукты принадлежащие категории и саму категорию:
+3.Добавление строки в таблицу c возратом id вставленной строки:
+
+```
+insert into customers.countrys(symbols,full_name) values('RU','Russia')
+returning country_id
+```
+
+4.Обновляем поле last_price_id по всем товарам в таблице products из таблицы prices последним полем price_id,
+т.е. максимальным значением:
+
+```
+update selling.products prods set last_price_id = 
+(select max(prs.price_id) from selling.prices as prs
+where prs.product_id = prods.product_id)
+```
+
+5.Удаляем все продукты принадлежащие категории и саму категорию:
 
 ```
 delete from selling.products using selling.categorys cat
 where cat.category_id = 3
 ```
-
-
-
 
 
 
