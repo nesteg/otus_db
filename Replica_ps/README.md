@@ -46,7 +46,7 @@
 
 Смотрим на состояние слота,запросов на реплику нет.Все Ок:
 
-![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/check_replication_slot.png) 
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/check_replications_slot.png) 
 
 Останавливаем контайнер replica и удаляем все из каталога $HOME/docker/volume/replica командой:
 
@@ -58,7 +58,7 @@
 
 Смотрим на состояние слота,есть запрос на реплику-это от backup:
 
-![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/check_replication_slot_after_backup.png) 
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/check_replications_slot_after_backup.png) 
 
 Устанавливаем в файле конфигурации replica задержку репликации минимум 5 минут $HOME/docker/volume/replica/postgresql.conf:
 
