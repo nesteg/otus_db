@@ -28,7 +28,7 @@
  
 ![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/ip_address_master.png)
 
-Далее в файле $HOME/docker/volume/postgres/postgresql.conf устанавливаем (используем отображение volume докера):
+Далее в файле $HOME/docker/volume/postgres/postgresql.conf устанавливаем listen_addresses (используем отображение volume докера):
 
 ![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/listen_address.png)
 
@@ -52,7 +52,7 @@
 
 ![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/rm_replica_data.png)
 
-Запускаем basckup:
+Запускаем backup:
 
 ![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/basebackup.png)
 
@@ -72,7 +72,7 @@
 
 ![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/replica_recovery.png) 
 
-Запускаем терминального клиента psql на мастере, создаем базу данных,таблицу и добавляем запись в эту таблицу:
+Запускаем терминального клиента psql на мастере, создаем базу данных eshop, таблицу и добавляем запись в эту таблицу:
 
 ![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/create_table_master.png) 
 
@@ -83,11 +83,75 @@
 ![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/replica_select.png)
 
 Из последней картинки видно, что таблица country реплицировалась, а данные еще нет.
-После пару запросов появились и записи.
+После пары запросов появились и записи.
 
-Посмотрим состояние слота реплики на master: 
+Посмотрим состояние слота реплики на master.Поле active стало t(true),
+изменилось зачение у поля restart_lsn: 
 
 ![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/change_replica_slot.png)
+
+Вывод - физическая реплика работает.
+
+Теперь настройка логической реплики.
+
+В файле $HOME/docker/volume/postgres/postgresql.conf устанавливаем wal_level = logical:
+
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/logical_master_wal.png)
+
+Делаем restart кластера master postgresql.
+
+Далее стартуем еще один кластер postgresql replicalogic:
+
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/replicalogic_start.png)
+
+Таким же образом  настраиваем его конфигурационный файл  $HOME/docker/volume/replicalogic/postgresql.conf
+и делаем restart replicalogic.
+Запускаем  клиента psql с подсоединением к replicalogic, создаем таблицу, такую же которую хотим реплицировать
+с master и подписку :
+
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/logic_subscription_create.png)
+
+Запускаем  клиента psql с подсоединением к master, создаем публикацию :
+
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/logic_publication_create.png)
+
+Идем в клиент psql к replicalogic и выполняем refresh publication :
+
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/logic_sub_after_publish.png)
+
+Из картинки видим , что записи реплицировались.
+
+Затем в клиенте psql master добавляем запись в таблицу:
+
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/logic_pub_insert_row.png)
+
+Смотрим, что произошло в replicalogic:
+
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/logic_sub_after_add_row.png)
+
+Из картинки видим , что запись появилась на replicalogic.
+
+Также привожу результаты запроса "select * from pg_replication_slots \gx" для  логического слота:
+
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/replication_slots.png)
+
+и результаты запроса "select * from pg_stat_replication \gx" :
+
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Replica_ps/images/logic_stat.png)
+
+
+Вывод - логическая репликация настроена и работает.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
