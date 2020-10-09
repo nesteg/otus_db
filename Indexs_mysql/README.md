@@ -20,7 +20,7 @@
 
 Смотрим результаты профилирования:
 
-![Image of PS](https://github.com/nesteg/otus_db/blob/master/Indexs_mysql/images/query_without_ index.png)
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Indexs_mysql/images/query_without_index.png)
 
 Смотрим результаты работы планировщика запроса:
 
