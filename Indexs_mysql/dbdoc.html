@@ -1,0 +1,659 @@
+<html><head>
+<title>Data dictionary: dbdoc</title>
+<style>
+    td,th {
+      text-align:center;
+      vertical-align:middle;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    caption, th, td {
+      padding: .2em .8em;
+      border: 1px solid #fff;
+    }
+    caption {
+      background: #dbb768;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    th {
+      font-weight: bold;
+      background: #f3ce7d;
+    }
+    td {
+      background: #ffea97;
+    }
+    </style>
+    </head>
+    <body>
+<img src='dbdoc.png'>
+<table><caption>Table: addresses - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>address_id</td><td>INT(10)</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ адреса.</td></tr><tr><td>house</td><td>VARCHAR(9)</td><td>No</td><td>No</td><td>No</td><td>NULL</td><td>Литера номер дома.Может быть сложной.Поэтому строка.</td></tr><tr><td>substreet_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Внеш. ключ на часть улицы и соответсвенно почтового индекса к которому относиться дом.</td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`address_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: fksubstreet_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fksubstreet_idx</td><td>['`substreet_id`']</td><td>INDEX</td><td></td></tr></table></br></table></br><table><caption>Table: countrys - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>country_id</td><td>SMALLINT(3)</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ  страны.</td></tr><tr><td>symbols</td><td>VARCHAR(2)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>название страны (2 символа).</td></tr><tr><td>full_name</td><td>VARCHAR(45)</td><td>No</td><td>No</td><td>No</td><td></td><td></td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`country_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: FullName_UNIQUE</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>FullName_UNIQUE</td><td>['`symbols`']</td><td>UNIQUE</td><td></td></tr></table></br><table><caption>Index: full_name_UNIQUE</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>full_name_UNIQUE</td><td>['`full_name`']</td><td>UNIQUE</td><td></td></tr></table></br></table></br><table><caption>Table: customs_addresses - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>custom_id</td><td>INT(10)</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Id клиента.</td></tr><tr><td>address_id</td><td>INT(10)</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Id адреса клиента(может быть несколько).</td></tr></table></br><table><caption>Index: fkcustom_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fkcustom_idx</td><td>['`custom_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: fkaddress_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fkaddress_idx</td><td>['`address_id`']</td><td>INDEX</td><td></td></tr></table></br></table></br><table><caption>Table: customs - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>custom_id</td><td>INT(10)</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ клиента.Суррогатный потому что по фамилии и имени и т.д. могут быть совпадения.</td></tr><tr><td>gender</td><td>TINYINT(3)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Номер пола.</td></tr><tr><td>title_id</td><td>TINYINT(3)</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Вн. ключ на сущность titles.</td></tr><tr><td>birthday</td><td>DATE</td><td>No</td><td>No</td><td>No</td><td>NULL</td><td>день рождения.</td></tr><tr><td>marital_status</td><td>BIT(1)</td><td>No</td><td>No</td><td>No</td><td></td><td>Семейное положение:0 - Нет половины,1- есть половина.</td></tr><tr><td>language_id</td><td>TINYINT(3)</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Вн. ключ на разговорный язык.</td></tr><tr><td>first_name</td><td>VARCHAR(100)</td><td>No</td><td>No</td><td>No</td><td></td><td>Имя</td></tr><tr><td>last_name</td><td>VARCHAR(100)</td><td>No</td><td>No</td><td>No</td><td></td><td>Фамилия</td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`custom_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: fktitle_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fktitle_idx</td><td>['`title_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: fk_customs_languages1_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_customs_languages1_idx</td><td>['`language_id`']</td><td>INDEX</td><td></td></tr></table></br></table></br><table><caption>Table: languages - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>language_id</td><td>TINYINT(3)</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ разговорного языка.</td></tr><tr><td>language</td><td>VARCHAR(2)</td><td>No</td><td>No</td><td>No</td><td>NULL</td><td>Разговорный язык (2 символа).</td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`language_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: language_UNIQUE</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>language_UNIQUE</td><td>['`language`']</td><td>UNIQUE</td><td></td></tr></table></br></table></br><table><caption>Table: postalcodes - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>postalcode_id</td><td>INT(10)</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ почтового индекса.</td></tr><tr><td>postalcode</td><td>VARCHAR(24)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Собственно сам индекс.</td></tr><tr><td>region_id</td><td>MEDIUMINT(5)</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td></td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`postalcode_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: index</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>index</td><td>['`region_id`']</td><td>INDEX</td><td></td></tr></table></br></table></br><table><caption>Table: regions - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>region_id</td><td>MEDIUMINT(5)</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ региона.</td></tr><tr><td>region</td><td>VARCHAR(80)</td><td>No</td><td>No</td><td>No</td><td></td><td>название региона</td></tr><tr><td>country_id</td><td>SMALLINT(3)</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Внешний ключ на Id страны в которой он находится.</td></tr></table></br><table><caption>Index: fkcountry_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fkcountry_idx</td><td>['`country_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`region_id`']</td><td>PRIMARY</td><td></td></tr></table></br></table></br><table><caption>Table: streets - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>street_id</td><td>INT(10)</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Перв. ключ для сущ. streets.Уулицы может быть несколько частей (substreets).Каждая часть имеет свой почтовый индекс.</td></tr><tr><td>street</td><td>VARCHAR(100)</td><td>No</td><td>No</td><td>No</td><td>NULL</td><td>Название улицы.</td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`street_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: street_UNIQUE</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>street_UNIQUE</td><td>['`street`']</td><td>UNIQUE</td><td></td></tr></table></br></table></br><table><caption>Table: towns - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>town_id</td><td>INT(11)</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Перв. ключ для сущ. towns.В нас. пункте может быть несколько частей (subtowns).Каждая часть имеет свой почтовый индекс.Или город (тогда это поселок) относится почтовому индексу как и какиу-то другие нас.пункты.</td></tr><tr><td>town</td><td>VARCHAR(40)</td><td>No</td><td>No</td><td>No</td><td></td><td>название нас пункта.</td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`town_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: town_UNIQUE</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>town_UNIQUE</td><td>['`town`']</td><td>UNIQUE</td><td></td></tr></table></br></table></br><table><caption>Table: subtowns - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>subtown_id</td><td>INT</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ для субсущности часть города.Эта часть города привязанна к уникальному почтовому индексу.</td></tr><tr><td>towns_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>внешний ключ на перв. ключ сущности towns. </td></tr><tr><td>post_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>внешний ключ на первичный ключ таблицы postalcode.</td></tr></table></br><table><caption>Index: fk_towns_postalcodes_towns1_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_towns_postalcodes_towns1_idx</td><td>['`towns_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`subtown_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: fk_towns_postalcodes_postalcodes1_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_towns_postalcodes_postalcodes1_idx</td><td>['`post_id`']</td><td>INDEX</td><td></td></tr></table></br></table></br><table><caption>Table: substreets - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>substreet_id</td><td>INT</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ для субсущности часть улицы.Эта часть улицы привязанна к уникальному почтовому индексу через субсущность город и улицу.</td></tr><tr><td>street_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>внешний ключ на перв. ключ streets.</td></tr><tr><td>subtown_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>внешний ключ на перв. ключ сущ. subtowns.</td></tr></table></br><table><caption>Index: fk_sreets_postalcodes_streets1_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_sreets_postalcodes_streets1_idx</td><td>['`street_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`substreet_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: fk_ui_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_ui_idx</td><td>['`subtown_id`']</td><td>INDEX</td><td></td></tr></table></br></table></br><table><caption>Table: titles - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>title_id</td><td>TINYINT(3)</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ обращения к персоне.</td></tr><tr><td>title</td><td>VARCHAR(7)</td><td>No</td><td>No</td><td>No</td><td>NULL</td><td>Обращение.</td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`title_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: title_UNIQUE</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>title_UNIQUE</td><td>['`title`']</td><td>UNIQUE</td><td></td></tr></table></br></table></br><table><caption>Table: shippers - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>shipper_id</td><td>INT</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ поставщика.</td></tr><tr><td>shipper</td><td>VARCHAR(80)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Название поставщика.</td></tr><tr><td>address</td><td>VARCHAR(100)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>адрес поставщика.</td></tr><tr><td>email</td><td>VARCHAR(18)</td><td>No</td><td>No</td><td>No</td><td></td><td>email.может не быть.</td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`shipper_id`']</td><td>PRIMARY</td><td></td></tr></table></br></table></br><table><caption>Table: buys - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>custom_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Ключ клиента,который купил. </td></tr><tr><td>product_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Ключ продукта,который купили.</td></tr><tr><td>date_buy</td><td>DATETIME</td><td>No</td><td>No</td><td>No</td><td></td><td>Время и дата покупки.</td></tr><tr><td>amount</td><td>DECIMAL</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Цена в национальной валюте.</td></tr><tr><td>unit</td><td>SMALLINT(3)</td><td>No</td><td>No</td><td>No</td><td></td><td>Количество штук.</td></tr><tr><td>currency_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Валюта покупки.</td></tr></table></br><table><caption>Index: fk_buys_products</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_buys_products</td><td>['`product_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: fk_buys_currency</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_buys_currency</td><td>['`currency_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: fk_buys_customs</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_buys_customs</td><td>['`custom_id`']</td><td>INDEX</td><td></td></tr></table></br></table></br><table><caption>Table: products - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>product_id</td><td>INT</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ продукта.</td></tr><tr><td>name</td><td>VARCHAR(80)</td><td>No</td><td>No</td><td>No</td><td></td><td>Название продукта.</td></tr><tr><td>manufacturer_id</td><td>INT</td><td>No</td><td>No</td><td>Yes</td><td></td><td>Производитель продукта.</td></tr><tr><td>category_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Кюч категории к которой относится товар.</td></tr><tr><td>propertys</td><td>JSON</td><td>No</td><td>No</td><td>No</td><td></td><td>Cвойства товарa, такие как  
+(габариты,масса,цвет,упаковка и т.д)</td></tr><tr><td>last_price_id</td><td>INT</td><td>No</td><td>No</td><td>No</td><td></td><td>Последний id цены в таблице prices для продукта. </td></tr><tr><td>color</td><td>VARCHAR(30)</td><td>No</td><td>No</td><td>No</td><td></td><td></td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`product_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: fk_products_manufacturers</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_products_manufacturers</td><td>['`manufacturer_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: fk_products_categorys</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_products_categorys</td><td>['`category_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: fk_products_color</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_products_color</td><td>['`color`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: ft_products</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>ft_products</td><td>['`color`', '`name`']</td><td>FULLTEXT</td><td></td></tr></table></br></table></br><table><caption>Table: attributes - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>attribute_id</td><td>INT</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ аттрибута.</td></tr><tr><td>name</td><td>VARCHAR(80)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Имя аттрибута.</td></tr><tr><td>type</td><td>VARCHAR(9)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Тип значения аттрибута.</td></tr><tr><td>default_value</td><td>VARCHAR(12)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Значение по умолчанию.</td></tr><tr><td>measurement_unit</td><td>VARCHAR(12)</td><td>No</td><td>No</td><td>No</td><td></td><td></td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`attribute_id`']</td><td>PRIMARY</td><td></td></tr></table></br></table></br><table><caption>Table: products_attributes - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>attribute_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Внешний ключ на перв. ключ аттрибута.</td></tr><tr><td>product_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Внешний ключ на перв. ключ продукта.</td></tr><tr><td>value_int</td><td>INT</td><td>No</td><td>No</td><td>No</td><td></td><td>Содержит целочисленные значения.</td></tr><tr><td>value_flt</td><td>FLOAT</td><td>No</td><td>No</td><td>No</td><td></td><td>Содержит вещественные.Обычно тип float достаточен.</td></tr><tr><td>value_varchar</td><td>VARCHAR(1000)</td><td>No</td><td>No</td><td>No</td><td></td><td>Текст - используем varchar.</td></tr><tr><td>value_datetime</td><td>DATETIME</td><td>No</td><td>No</td><td>No</td><td></td><td>Дата и время.</td></tr><tr><td>value_year</td><td>DATE</td><td>No</td><td>No</td><td>No</td><td></td><td>Просто год.Например год выпуска продукта.</td></tr><tr><td>value_ref_text</td><td>INT</td><td>No</td><td>No</td><td>Yes</td><td></td><td></td></tr></table></br><table><caption>Index: fk_products_attributes_products</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_products_attributes_products</td><td>['`product_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: fk_products_attributes_attributes</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_products_attributes_attributes</td><td>['`attribute_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: fk_products_attributes_table</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_products_attributes_table</td><td>['`value_ref_text`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: unique_idx</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>unique_idx</td><td>['`attribute_id`', '`product_id`']</td><td>UNIQUE</td><td></td></tr></table></br></table></br><table><caption>Table: manufacturers - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>manufacturer_id</td><td>INT</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ производителя товаров(а).</td></tr><tr><td>manufacturer</td><td>VARCHAR(100)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Название производителя.</td></tr><tr><td>address</td><td>VARCHAR(120)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Адрес производителя.</td></tr><tr><td>email</td><td>VARCHAR(18)</td><td>No</td><td>No</td><td>No</td><td></td><td>email.Может не быть.</td></tr><tr><td>country</td><td>CHAR(2)</td><td>No</td><td>No</td><td>No</td><td></td><td></td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`manufacturer_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: manufacturer_UNIQUE</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>manufacturer_UNIQUE</td><td>['`manufacturer`']</td><td>UNIQUE</td><td></td></tr></table></br></table></br><table><caption>Table: prices - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>price_id</td><td>BIGINT(24)</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Кюч цены для некоторого продукта.</td></tr><tr><td>product_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Внешний ключ продукта.</td></tr><tr><td>currency_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Ключ базовой валюты.</td></tr><tr><td>date_from</td><td>DATETIME</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Дата выставления цены.</td></tr><tr><td>date_to</td><td>DATETIME</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Дата окончания действия текущей цены.</td></tr><tr><td>amount_base</td><td>DECIMAL(10,2)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Собственно значение цены в базовой валюте.Должна быть больше нуля.Реализовано через триггер before insert и before update.</td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`price_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: fk_Prices_products</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_Prices_products</td><td>['`product_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: fk_prices_currency</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_prices_currency</td><td>['`currency_id`']</td><td>INDEX</td><td></td></tr></table></br></table></br><table><caption>Table: shippers_products - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>shipper_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Ключ поставщика.</td></tr><tr><td>product_id</td><td>INT</td><td>Yes</td><td>No</td><td>Yes</td><td></td><td>Ключ производителя.</td></tr></table></br><table><caption>Index: fk_shippers_products_products</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_shippers_products_products</td><td>['`product_id`']</td><td>INDEX</td><td></td></tr></table></br><table><caption>Index: fk_shippers_products_shippers</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>fk_shippers_products_shippers</td><td>['`shipper_id`']</td><td>INDEX</td><td></td></tr></table></br></table></br><table><caption>Table: config - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>version</td><td>CHAR(3)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Версия модели БД.Просто номер 1,2, и т.д.</td></tr></table></br><table><caption>Table: gender - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>gender_id</td><td>TINYINT(3)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>идентификатор пола (без индекса).Целостность за счет тригерра при insert.</td></tr><tr><td>gender</td><td>VARCHAR(7)</td><td>No</td><td>No</td><td>No</td><td>NULL</td><td>Название пола(м или ж или не указан).</td></tr></table></br><table><caption>Table: categorys - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>category_id</td><td>INT</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td></td></tr><tr><td>name</td><td>VARCHAR(60)</td><td>Yes</td><td>No</td><td>No</td><td></td><td></td></tr><tr><td>parent</td><td>INT</td><td>No</td><td>No</td><td>No</td><td></td><td></td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`category_id`']</td><td>PRIMARY</td><td></td></tr></table></br></table></br><table><caption>Table: currency - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>currency_id</td><td>INT</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Ключ валюты.</td></tr><tr><td>symbol</td><td>VARCHAR(1)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Знак валюты.</td></tr><tr><td>short_name</td><td>VARCHAR(3)</td><td>Yes</td><td>No</td><td>No</td><td></td><td>Короткое имя валюты.</td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`currency_id`']</td><td>PRIMARY</td><td></td></tr></table></br><table><caption>Index: symbol_UNIQUE</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>symbol_UNIQUE</td><td>['`symbol`']</td><td>UNIQUE</td><td></td></tr></table></br><table><caption>Index: short_name_UNIQUE</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>short_name_UNIQUE</td><td>['`short_name`']</td><td>UNIQUE</td><td></td></tr></table></br></table></br><table><caption>Table: changes - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>currency_id</td><td>INT</td><td>Yes</td><td>Yes</td><td>Yes</td><td></td><td>Ключ валюты.</td></tr><tr><td>date</td><td>DATETIME</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td>Дата курсы валюты по отношению к базовой.</td></tr><tr><td>ratio</td><td>DECIMAL</td><td>No</td><td>No</td><td>No</td><td></td><td>Курс валюты по отношению к базовой.</td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`currency_id`', '`date`']</td><td>PRIMARY</td><td></td></tr></table></br></table></br><table><caption>Table: attribute_texts - </caption><tr><td colspan="7">Attributes</td></tr>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Not Null</th>
+        <th>PK</th>
+        <th>FK</th>
+        <th>Default</th>
+        <th>Comment</th>
+        </tr><tr><td>attr_id</td><td>INT</td><td>Yes</td><td>Yes</td><td>No</td><td></td><td></td></tr><tr><td>data</td><td>TEXT(30000)</td><td>Yes</td><td>No</td><td>No</td><td></td><td></td></tr></table></br><table><caption>Index: full_text#1</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>full_text#1</td><td>['`data`']</td><td>FULLTEXT</td><td></td></tr></table></br><table><caption>Index: PRIMARY</caption><tr><td colspan="4">Attributes</td></tr>
+                <tr>
+                <th>Name</th>
+                <th>Columns</th>
+                <th>Type</th>
+                <th>Description</th>
+                </tr>
+                <tr><td>PRIMARY</td><td>['`attr_id`']</td><td>PRIMARY</td><td></td></tr></table></br></table></br>
+</body></html>

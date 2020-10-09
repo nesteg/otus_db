@@ -1,0 +1,7 @@
+
+Добавление индексов:
+
+1.В сущностях справочников , таких как languages,titles,countrys,regions,towns,streets применены ограничения unique
+  на соответствующие поля (автоматически создается индекс).
+2.Добавлен индекс в таблице products на поле color. Это поле генерируется из json propertys(соответственно определенно как stored).
+3.Добавлен fulltext индекс для полей name, color в таблице products и data в таблице attribute_texts.
