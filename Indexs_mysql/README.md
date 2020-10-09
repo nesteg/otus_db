@@ -8,7 +8,7 @@
 
 Для начала отключим индекс:
 
-![Image of PS](https://github.com/nesteg/otus_db/blob/master/Indexs_mysql/images/alter_color_ invisible.png)
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Indexs_mysql/images/alter_color_invisible.png)
 
 Установим флаг разрешающий профилирование запросов:
 
