@@ -50,7 +50,7 @@ explain ... \G;
 Во втором запросе тоже используется временная таблица.
 Последние два подзапроса оптимальны, птому что используют индексы, которые автоматически создаются для первичных ключей.
 
-![Image of PS](https://github.com/nesteg/otus_db/blob/master/PerfomQuery_mysql/images/explain_table_part2_1.png)
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/PerfomQuery_mysql/images/explain_table_part2_2.png)
  
 Теперь посмотрим вывод команды explain в формате json:
 ```
@@ -97,7 +97,7 @@ explain analyze ... \G
 Обращаем внимание на узел "Materialize  (actual time=1070.067..1070.257 rows=137 loops=1)".  Надо попытаться уменьшить время выполнения.
 Это достигается, если переделать запрос выкинув внутренний select:
 ```
-explain analyze select  sum(Cnt) as 'К-во предложений',max(Mx) as 'Макс,₽' ,min(Mn) as 'Мин,₽' ,
+select  sum(Cnt) as 'К-во предложений',max(Mx) as 'Макс,₽' ,min(Mn) as 'Мин,₽' ,
 if(grouping(cat_id),'Все категории',get_path_by_id(cat_id)) as 'Категория' from (
  select cat.category_id as cat_id,
 	   count(prod.product_id) as Cnt,
@@ -131,7 +131,7 @@ order by Cnt desc;
 Значит надо проанализировать ее план. Тело функции следующее (это рекурсивный cte):
 
 ```
- analyze with recursive a(Parent,Name,CategoryId,level,pathstr) as 
+ with recursive a(Parent,Name,CategoryId,level,pathstr) as 
 ( 
    select t1.parent,t1.name,t1.category_id,0 as level,cast(t1.name as char(255)) as pathstr from categorys as t1
    where t1.parent is null
@@ -146,7 +146,8 @@ select pathstr
 from a
 where CategoryId=35
 limit 1; 
-```используется Using where c значением фильтра 10.0(filtered)
+```
+
 Здесь входящий параметр id заменен на конкретное значение 35.
 Смотрим на план построенный
 
