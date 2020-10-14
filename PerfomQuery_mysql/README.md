@@ -171,7 +171,7 @@ limit 1;
 
 Смотрим обновленный план:
 
-![Image of PS](https://github.com/nesteg/otus_db/blob/master/PerfomQuery_mysql/images/explain_table_func_part1_2.png.png) 
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/PerfomQuery_mysql/images/explain_table_func_part1_2.png) 
 
 и
 
@@ -180,11 +180,11 @@ limit 1;
 
 Индекс включился.Смотрим время исполнения:
 
-[Image of PS](https://github.com/nesteg/otus_db/blob/master/PerfomQuery_mysql/images/explain_tree_func_2.png) 
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/PerfomQuery_mysql/images/explain_tree_func_2.png) 
 
 Ок.Запускаем основной запрос:
 
-[Image of PS](https://github.com/nesteg/otus_db/blob/master/PerfomQuery_mysql/images/explain_tree_func_3.png) 
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/PerfomQuery_mysql/images/explain_tree_3.png) 
 
 Запрос стал меньше 1 секунды.
 
