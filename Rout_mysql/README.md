@@ -17,7 +17,7 @@
 
 Смотрим разрешения на процедуры:
 
-![Image of PS](https://github.com/nesteg/otus_db/blob/masterRout_mysql/images/procs_priv.png)
+![Image of PS](https://github.com/nesteg/otus_db/blob/master/Rout_mysql/images/procs_priv.png)
 
 
 
